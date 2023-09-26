@@ -1,0 +1,15 @@
+{
+    "name": "kda/chimp",
+    "authors": [
+        {
+            "name": "kda",
+            "email": "2repby@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Framework\\": "Framework"
+        }
+    },
+    "require": {}
+}
