@@ -19,7 +19,6 @@ if ( file_exists(dirname(__FILE__).'/vendor/autoload.php') ) {
         echo "Ошибка хагрузки ENV<br>";
     }
 
-    $connection = DbConnection::getConnection();
 
     Container::getApp()->run();
 
