@@ -18,7 +18,7 @@ if ( file_exists(dirname(__FILE__).'/vendor/autoload.php') ) {
     else {
         echo "Ошибка хагрузки ENV<br>";
     }
-
+    session_start(["use_strict_mode" => true]);
 
     Container::getApp()->run();
 

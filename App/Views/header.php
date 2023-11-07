@@ -1,0 +1,23 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ChimpApp</title>
+</head>
+<body>
+<?php
+    if(!array_key_exists('user', $data))
+    {
+        echo '<form class="d-flex" method="post" action="/login">';
+        echo '<input class="form-control me-2" type="text" placeholder="Логин" name="login" aria-label="Логин"/>';
+        echo '<input class="form-control me-2" type="text" placeholder="Пароль" name="password" aria-label="Пароль"/>';
+        echo '<button class="btn btn-outline-success" type="submit">Войти</button>';
+
+        echo '</form>';
+    }
+    else {
+        echo '<a class="nav-link" href="#">Привет, ' . $data['user']->firstname . ' ' . $data['user']->lastname . '</a>';
+        echo '<a class="btn btn-outline-success my-2 my-sm-0" href="/logout">Выйти</a>';
+
+    }
+?>

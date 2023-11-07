@@ -2,14 +2,17 @@
 
 namespace Framework;
 
+use Framework\Exceptions\UnauthorizedException;
+
 class Router
 {
     private Request $request;
+    public Auth $auth;
     public static array $routes = []; //use to be private
-    public function __construct(Request $request)
+    public function __construct(Request $request, Auth $auth)
     {
         $this->request = $request;
-
+        $this->auth = $auth;
     }
     private function getCurrentRoute()
     {
@@ -22,6 +25,17 @@ class Router
         usort($routes, fn($route_first, $route_second) => count($this->getParamsForController($route_second)) - count($this->getParamsForController($route_first)));
 //        var_dump( $this->getParamsForController($routes[0]));
         return $routes[0];
+    }
+
+    /**
+     * @throws UnauthorizedException
+     */
+    private function checkAuth(Route $route)
+    {
+        $this->request = $this->auth->enrichByUser($this->request);
+        if ($route->isRequireAuth() && !$this->request->getUser()) {
+            throw new UnauthorizedException();
+        }
     }
     private function getParamsForController(Route $route)
     {
@@ -44,8 +58,8 @@ class Router
         $method_name = $exec_route->getControllerMethodName();
         $controller = new $controller_name();
         $params_to_controller = $this->getParamsForController($exec_route);
+//        return call_user_func_array([$controller, $method_name], array_merge(['request' => $this->request], $params_to_controller));
         return call_user_func_array([$controller, $method_name], $params_to_controller);
-
 
     }
 

@@ -9,17 +9,25 @@ class Request
     private $path;
     private $post_params;
     private $get_params;
+    private $user;
+    private $session;
     public function __construct()
     {
-        $this->path = $_GET['path'];
+        $this->path = $_GET['path']? $_GET['path'] : '';
         $this->get_params = $_GET;
         unset($this->get_params['path']);
         $this->post_params = $_POST;
         if($_SERVER['REQUEST_METHOD'] === 'POST') $this->type = Route::METHOD_POST;
         if($_SERVER['REQUEST_METHOD'] === 'GET') $this->type = Route::METHOD_GET;
+        $this->session = $_SESSION;
     }
 
     public function getGetParams(): array
+    {
+        return $this->get_params;
+    }
+
+    public function getPostParams(): array
     {
         return $this->get_params;
     }
@@ -31,5 +39,24 @@ class Request
     public function getPath()
     {
         return $this->path;
+    }
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    public function setUser($user): void
+    {
+        $this->user = $user;
+    }
+
+    public function getSession()
+    {
+        return $this->session;
+    }
+
+    public function setSession($session): void
+    {
+        $this->session = $session;
     }
 }
