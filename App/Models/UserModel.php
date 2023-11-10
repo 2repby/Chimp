@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
-class UserModel extends \Framework\SQLModel
+use Framework\SQLModel;
+
+class UserModel extends SQLModel
 {
     protected $table="users";
 }

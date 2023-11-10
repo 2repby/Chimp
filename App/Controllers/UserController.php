@@ -8,17 +8,17 @@ use Framework\Request;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index($request)
     {
-        $user = Request::getUser();
+        $user = $request->getUser();
         $users = new UserModel();
-        return $this->view('users.php', ['users' =>  $users->all()]);
+        return $this->view('users.php', ['users' =>  $users->all(), 'user' =>  $request->getUser(), 'message' => $request->getMessage()]);
 
     }
-    public function getById($id)
+    public function getById($id, $request)
     {
         $users = new UserModel();
-        return $this->view('user.php', $users->getById($id));
+        return $this->view('user.php', [$users->getById($id), 'user' =>  $request->getUser(), 'message' => $request->getMessage()]);
 
     }
 

@@ -8,6 +8,7 @@ abstract class Model
 
     public function __construct()
     {
+
         $this->connection = DbConnection::getConnection();
     }
     public function getById($id){

@@ -3,13 +3,14 @@
 namespace App\Controllers;
 
 use Framework\Controller;
+use Framework\Request;
 
 class PageController extends Controller
 {
-    public function index($name, $value)
+    public function index(Request $request)
     {
-//        echo ($name.' '.$value);
-       return $this->view('index.php', ['name' =>  $name, 'value' => $value]);
+       return $this->view('home.php', ['user' =>  $request->getUser(), 'message' => $request->getMessage()]);
     }
+
 
 }

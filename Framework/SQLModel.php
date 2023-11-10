@@ -8,16 +8,16 @@ class SQLModel extends Model
 
     public function __construct()
     {
+
         parent::__construct();
+
     }
     public function getById($id){
-//           var_dump([$this->getIdField()=>$id]);
-        return $this->getWhere([$this->getIdField()=>$id]);
+        return $this->getWhere([$this->getIdField()=>$id])[0];
     }
     public function getWhere($conditions)
     {
         $condition = implode(" AND ", array_map(function($key,$value){return "$key = :$key";},  array_keys($conditions), $conditions));
-//        echo "Условие: ", $condition;
         $query = $this->connection->prepare("SELECT * FROM $this->table WHERE $condition");
         foreach ($conditions as $condition => $value){
             $query->bindParam(":$condition", $value);

@@ -8,7 +8,9 @@ class Auth
 {
     public function enrichByUser(Request $request): Request
     {
-        if ($session = $request->getSession()) {
+        if (array_key_exists('id', $request->getSession()))
+        {
+            $session = $request->getSession();
             $userModel = new UserModel;
             $request->setUser($userModel->getById((int)$session['id']));
         }

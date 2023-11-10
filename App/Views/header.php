@@ -6,7 +6,9 @@
 </head>
 <body>
 <?php
-    if(!array_key_exists('user', $data))
+
+    if (!$data['user'])
+
     {
         echo '<form class="d-flex" method="post" action="/login">';
         echo '<input class="form-control me-2" type="text" placeholder="Логин" name="login" aria-label="Логин"/>';
@@ -16,8 +18,8 @@
         echo '</form>';
     }
     else {
-        echo '<a class="nav-link" href="#">Привет, ' . $data['user']->firstname . ' ' . $data['user']->lastname . '</a>';
-        echo '<a class="btn btn-outline-success my-2 my-sm-0" href="/logout">Выйти</a>';
+        echo 'Привет, ' . $data['user']->firstname . ' ' . $data['user']->lastname ;
+        echo '<br><a href="/logout">Выйти</a>';
 
     }
 ?>
