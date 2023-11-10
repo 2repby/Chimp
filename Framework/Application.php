@@ -20,7 +20,6 @@ class Application
 
 
         echo print_r($this->router->getContent(), true);
-        echo ('Текущий маршрут');
 
     }
 }
