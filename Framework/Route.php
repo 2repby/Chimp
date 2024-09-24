@@ -28,13 +28,13 @@ class Route
     }
 
 
-    public function getPath()
+    public function getPath(): string
     {
         return $this->path;
     }
 
 
-    public function getAction()
+    public function getAction(): string
     {
         return $this->action;
     }

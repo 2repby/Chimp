@@ -8,7 +8,7 @@ use Framework\Request;
 
 class UserController extends Controller
 {
-    public function index($request)
+    public function index(Request $request)
     {
         $user = $request->getUser();
         $users = new UserModel();

@@ -34,7 +34,7 @@ class AuthController extends \Framework\Controller
        header('Location: /page/home');
         exit();
     }
-    public function logout(Request $request){
+    public function logout(){
         $_SESSION = null;
         $_SESSION['msg'] =  "Вы успешно вышли из системы";
         header('Location: /page/home');

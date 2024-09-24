@@ -22,7 +22,7 @@ class Router
         $this->message = $message;
     }
 
-    private function getCurrentRoute()
+    private function getCurrentRoute(): Route|null
     {
         $routes = array_filter(self::$routes,
             fn($route) => $route->getType() == $this->request->getType() && preg_match($route->getMask(), $this->request->getPath()));
